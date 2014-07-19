@@ -1,0 +1,42 @@
+{
+  "name": "clear-require",
+  "version": "1.0.0",
+  "description": "Clear a module from the require cache",
+  "license": "MIT",
+  "repository": "sindresorhus/clear-require",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "clear",
+    "require",
+    "cache",
+    "uncache",
+    "uncached",
+    "module",
+    "unrequire",
+    "derequire",
+    "delete",
+    "del",
+    "remove",
+    "rm"
+  ],
+  "dependencies": {
+    "caller-path": "^0.1.0",
+    "resolve-from": "^1.0.0"
+  },
+  "devDependencies": {
+    "ava": "0.0.3"
+  }
+}
