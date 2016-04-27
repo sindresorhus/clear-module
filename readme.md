@@ -56,6 +56,11 @@ What you would put into `require()`.
 Clear all modules from the require cache.
 
 
+## Related
+
+- [require-uncached](https://github.com/sindresorhus/require-uncached) - Require a module bypassing the cache
+
+
 ## License
 
 MIT © [Sindre Sorhus](http://sindresorhus.com)
