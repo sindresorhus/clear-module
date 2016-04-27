@@ -55,6 +55,11 @@ What you would put into `require()`.
 
 Clear all modules from the require cache.
 
+### clearRequire.require(moduleId)
+
+Returns a clean require of the given moduleId. Does not add the returned module
+to require.cache.
+
 
 ## License
 
