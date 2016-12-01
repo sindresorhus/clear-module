@@ -14,3 +14,13 @@ var clear = module.exports = function (moduleId) {
 clear.all = function () {
 	Object.keys(require.cache).forEach(clear);
 };
+
+clear.require = function (moduleId) {
+	clear(moduleId);
+
+	var mod = require(moduleId);
+
+	clear(moduleId);
+
+	return mod;
+};
