@@ -14,3 +14,9 @@ var clear = module.exports = function (moduleId) {
 clear.all = function () {
 	Object.keys(require.cache).forEach(clear);
 };
+
+clear.match = function (regex) {
+  Object.keys(require.cache).forEach(function (moduleId) {
+    if (regex.test(moduleId)) clear(moduleId);
+  })
+};

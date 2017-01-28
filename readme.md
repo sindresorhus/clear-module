@@ -46,7 +46,7 @@ Clear a module from the require cache.
 
 #### moduleId
 
-*Required*  
+*Required*
 Type: `string`
 
 What you would put into `require()`.
@@ -55,6 +55,14 @@ What you would put into `require()`.
 
 Clear all modules from the require cache.
 
+### clearRequire.match(regex)
+
+Clear all modules from the require cache that match the regex.
+
+#### regex
+
+*Required*
+Type: `/pattern/` or `RegExp` object
 
 ## Related
 

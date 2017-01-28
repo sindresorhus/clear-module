@@ -15,3 +15,13 @@ test('clearRequire.all()', function (t) {
 	clearRequire.all();
 	t.assert(Object.keys(require.cache).length === 0);
 });
+
+test('clearRequire.match()', function (t) {
+  var id = './fixture';
+  var match = './fixture-match';
+  t.assert(require(id)() === 1);
+  t.assert(require(match)() === 1);
+  clearRequire.match(/fixture-match/);
+  t.assert(require(id)() === 2);
+  t.assert(require(match)() === 1);
+});
