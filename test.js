@@ -1,27 +1,27 @@
-'use strict';
-var test = require('ava');
-var clearRequire = require('./');
+/* eslint-disable import/no-dynamic-require */
+import test from 'ava';
+import m from '.';
 
-test('clearRequire()', function (t) {
-	var id = './fixture';
-	t.assert(require(id)() === 1);
-	t.assert(require(id)() === 2);
-	clearRequire(id);
-	t.assert(require(id)() === 1);
+test('clearRequire()', t => {
+	const id = './fixture';
+	t.is(require(id)(), 1);
+	t.is(require(id)(), 2);
+	m(id);
+	t.is(require(id)(), 1);
 });
 
-test('clearRequire.all()', function (t) {
-	t.assert(Object.keys(require.cache).length > 0);
-	clearRequire.all();
-	t.assert(Object.keys(require.cache).length === 0);
+test('clearRequire.all()', t => {
+	t.true(Object.keys(require.cache).length > 0);
+	m.all();
+	t.is(Object.keys(require.cache).length, 0);
 });
 
-test('clearRequire.match()', function (t) {
-  var id = './fixture';
-  var match = './fixture-match';
-  t.assert(require(id)() === 1);
-  t.assert(require(match)() === 1);
-  clearRequire.match(/fixture-match/);
-  t.assert(require(id)() === 2);
-  t.assert(require(match)() === 1);
+test('clearRequire.match()', t => {
+	const id = './fixture';
+	const match = './fixture-match';
+	t.is(require(id)(), 1);
+	t.is(require(match)(), 1);
+	m.match(/match/);
+	t.is(require(id)(), 2);
+	t.is(require(match)(), 1);
 });

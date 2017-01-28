@@ -1,22 +1,28 @@
 'use strict';
-var path = require('path');
-var resolveFrom = require('resolve-from');
-var callerPath = require('caller-path');
+const path = require('path');
+const resolveFrom = require('resolve-from');
+const callerPath = require('caller-path');
 
-var clear = module.exports = function (moduleId) {
+const clear = moduleId => {
 	if (typeof moduleId !== 'string') {
-		throw new TypeError('Expected a string');
+		throw new TypeError(`Expected a \`string\`, got \`${typeof moduleId}\``);
 	}
 
 	delete require.cache[resolveFrom(path.dirname(callerPath()), moduleId)];
 };
 
-clear.all = function () {
-	Object.keys(require.cache).forEach(clear);
+clear.all = () => {
+	for (const moduleId of Object.keys(require.cache)) {
+		clear(moduleId);
+	}
 };
 
-clear.match = function (regex) {
-  Object.keys(require.cache).forEach(function (moduleId) {
-    if (regex.test(moduleId)) clear(moduleId);
-  })
+clear.match = regex => {
+	for (const moduleId of Object.keys(require.cache)) {
+		if (regex.test(moduleId)) {
+			clear(moduleId);
+		}
+	}
 };
+
+module.exports = clear;

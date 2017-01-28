@@ -1,19 +1,19 @@
 {
   "name": "clear-require",
   "version": "1.0.1",
-  "description": "Clear a module from the require cache",
+  "description": "Clear a module from the `require` cache",
   "license": "MIT",
   "repository": "sindresorhus/clear-require",
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
-    "url": "http://sindresorhus.com"
+    "url": "sindresorhus.com"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4"
   },
   "scripts": {
-    "test": "node test.js"
+    "test": "xo && ava"
   },
   "files": [
     "index.js"
@@ -33,10 +33,11 @@
     "rm"
   ],
   "dependencies": {
-    "caller-path": "^0.1.0",
-    "resolve-from": "^1.0.0"
+    "caller-path": "^2.0.0",
+    "resolve-from": "^2.0.0"
   },
   "devDependencies": {
-    "ava": "0.0.3"
+    "ava": "*",
+    "xo": "*"
   }
 }

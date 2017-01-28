@@ -1,13 +1,13 @@
 # clear-require [![Build Status](https://travis-ci.org/sindresorhus/clear-require.svg?branch=master)](https://travis-ci.org/sindresorhus/clear-require)
 
-> Clear a module from the [require cache](http://nodejs.org/api/modules.html#modules_caching)
+> Clear a module from the [`require` cache](https://nodejs.org/api/modules.html#modules_caching)
 
-Useful for testing purposes when you need to freshly require a module.
+Useful for testing purposes when you need to freshly `require` a module.
 
 
 ## Install
 
-```sh
+```
 $ npm install --save clear-require
 ```
 
@@ -16,14 +16,12 @@ $ npm install --save clear-require
 
 ```js
 // foo.js
-var i = 0;
-module.exports = function () {
-	return ++i;
-};
+let i = 0;
+module.exports = () => ++i;
 ```
 
 ```js
-var clearRequire = require('clear-require');
+const clearRequire = require('clear-require');
 
 require('./foo')();
 //=> 1
@@ -42,27 +40,26 @@ require('./foo')();
 
 ### clearRequire(moduleId)
 
-Clear a module from the require cache.
-
 #### moduleId
 
-*Required*
 Type: `string`
 
-What you would put into `require()`.
+What you would use with `require()`.
 
 ### clearRequire.all()
 
-Clear all modules from the require cache.
+Clear all modules from the `require` cache.
 
 ### clearRequire.match(regex)
 
-Clear all modules from the require cache that match the regex.
+Clear all matching modules from the `require` cache.
 
 #### regex
 
-*Required*
-Type: `/pattern/` or `RegExp` object
+Type: `RegExp`
+
+Regex to match against the module ID's.
+
 
 ## Related
 
@@ -71,4 +68,4 @@ Type: `/pattern/` or `RegExp` object
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](https://sindresorhus.com)
