@@ -1,6 +1,6 @@
 {
   "name": "clear-require",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Clear a module from the `require` cache",
   "license": "MIT",
   "repository": "sindresorhus/clear-require",
