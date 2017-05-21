@@ -1,8 +1,7 @@
-/* eslint-disable import/no-dynamic-require */
 import test from 'ava';
 import m from '.';
 
-test('clearRequire()', t => {
+test('clearModule()', t => {
 	const id = './fixture';
 	t.is(require(id)(), 1);
 	t.is(require(id)(), 2);
@@ -10,13 +9,13 @@ test('clearRequire()', t => {
 	t.is(require(id)(), 1);
 });
 
-test('clearRequire.all()', t => {
+test('clearModule.all()', t => {
 	t.true(Object.keys(require.cache).length > 0);
 	m.all();
 	t.is(Object.keys(require.cache).length, 0);
 });
 
-test('clearRequire.match()', t => {
+test('clearModule.match()', t => {
 	const id = './fixture';
 	const match = './fixture-match';
 	t.is(require(id)(), 1);

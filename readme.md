@@ -1,14 +1,14 @@
-# clear-require [![Build Status](https://travis-ci.org/sindresorhus/clear-require.svg?branch=master)](https://travis-ci.org/sindresorhus/clear-require)
+# clear-module [![Build Status](https://travis-ci.org/sindresorhus/clear-module.svg?branch=master)](https://travis-ci.org/sindresorhus/clear-module)
 
-> Clear a module from the [`require` cache](https://nodejs.org/api/modules.html#modules_caching)
+> Clear a module from the [cache](https://nodejs.org/api/modules.html#modules_caching)
 
-Useful for testing purposes when you need to freshly `require` a module.
+Useful for testing purposes when you need to freshly import a module.
 
 
 ## Install
 
 ```
-$ npm install --save clear-require
+$ npm install --save clear-module
 ```
 
 
@@ -21,7 +21,7 @@ module.exports = () => ++i;
 ```
 
 ```js
-const clearRequire = require('clear-require');
+const clearModule = require('clear-module');
 
 require('./foo')();
 //=> 1
@@ -29,7 +29,7 @@ require('./foo')();
 require('./foo')();
 //=> 2
 
-clearRequire('./foo');
+clearModule('./foo');
 
 require('./foo')();
 //=> 1
@@ -38,7 +38,7 @@ require('./foo')();
 
 ## API
 
-### clearRequire(moduleId)
+### clearModule(moduleId)
 
 #### moduleId
 
@@ -46,24 +46,27 @@ Type: `string`
 
 What you would use with `require()`.
 
-### clearRequire.all()
+### clearModule.all()
 
-Clear all modules from the `require` cache.
+Clear all modules from the cache.
 
-### clearRequire.match(regex)
+### clearModule.match(regex)
 
-Clear all matching modules from the `require` cache.
+Clear all matching modules from the cache.
 
 #### regex
 
 Type: `RegExp`
 
-Regex to match against the module ID's.
+Regex to match against the module IDs.
 
 
 ## Related
 
-- [require-uncached](https://github.com/sindresorhus/require-uncached) - Require a module bypassing the cache
+- [import-fresh](https://github.com/sindresorhus/import-fresh) - Import a module while bypassing the cache
+- [import-from](https://github.com/sindresorhus/import-from) - Import a module from a given path
+- [import-cwd](https://github.com/sindresorhus/import-cwd) - Import a module from the current working directory
+- [import-lazy](https://github.com/sindresorhus/import-lazy) - Import a module lazily
 
 
 ## License
