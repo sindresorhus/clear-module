@@ -8,7 +8,21 @@ const clear = moduleId => {
 		throw new TypeError(`Expected a \`string\`, got \`${typeof moduleId}\``);
 	}
 
-	delete require.cache[resolveFrom(path.dirname(callerPath()), moduleId)];
+	const filePath = resolveFrom(path.dirname(callerPath()), moduleId);
+
+	// Delete itself from module parent
+	if (require.cache[filePath] && require.cache[filePath].parent) {
+		let i = require.cache[filePath].parent.children.length;
+
+		while (i--) {
+			if (require.cache[filePath].parent.children[i].id === filePath) {
+				require.cache[filePath].parent.children.splice(i, 1);
+			}
+		}
+	}
+
+	// Delete module from cache
+	delete require.cache[filePath];
 };
 
 clear.all = () => {
