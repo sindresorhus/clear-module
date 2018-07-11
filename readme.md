@@ -8,7 +8,7 @@ Useful for testing purposes when you need to freshly import a module.
 ## Install
 
 ```
-$ npm install --save clear-module
+$ npm install clear-module
 ```
 
 

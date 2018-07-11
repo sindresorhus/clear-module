@@ -1,44 +1,44 @@
 {
-  "name": "clear-module",
-  "version": "2.1.0",
-  "description": "Clear a module from the cache",
-  "license": "MIT",
-  "repository": "sindresorhus/clear-module",
-  "author": {
-    "name": "Sindre Sorhus",
-    "email": "sindresorhus@gmail.com",
-    "url": "sindresorhus.com"
-  },
-  "engines": {
-    "node": ">=4"
-  },
-  "scripts": {
-    "test": "xo && ava"
-  },
-  "files": [
-    "index.js"
-  ],
-  "keywords": [
-    "clear",
-    "module",
-    "require",
-    "import",
-    "cache",
-    "uncache",
-    "uncached",
-    "unrequire",
-    "derequire",
-    "delete",
-    "del",
-    "remove",
-    "rm"
-  ],
-  "dependencies": {
-    "caller-path": "^2.0.0",
-    "resolve-from": "^3.0.0"
-  },
-  "devDependencies": {
-    "ava": "*",
-    "xo": "*"
-  }
+	"name": "clear-module",
+	"version": "2.1.0",
+	"description": "Clear a module from the cache",
+	"license": "MIT",
+	"repository": "sindresorhus/clear-module",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=6"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"clear",
+		"module",
+		"require",
+		"import",
+		"cache",
+		"uncache",
+		"uncached",
+		"unrequire",
+		"derequire",
+		"delete",
+		"del",
+		"remove",
+		"rm"
+	],
+	"dependencies": {
+		"caller-path": "^2.0.0",
+		"resolve-from": "^4.0.0"
+	},
+	"devDependencies": {
+		"ava": "*",
+		"xo": "*"
+	}
 }
