@@ -8,20 +8,20 @@ const clear = (moduleId, options) => {
 		throw new TypeError(`Expected a \`string\`, got \`${typeof moduleId}\``);
 	}
 
-    if (typeof options !== 'object') {
-        throw new TypeError(`Expected an \`object\`, got \`${typeof options}\``);
-    }
+	if (typeof options !== 'object') {
+		throw new TypeError(`Expected an \`object\`, got \`${typeof options}\``);
+	}
 
 	const filePath = resolveFrom(path.dirname(callerPath()), moduleId);
 
-    // Delete its children from module
-    if (options.children && require.cache[filePath] && require.cache[filePath].children) {
-        let i = require.cache[filePath].children.length;
+	// Delete its children from module
+	if (options.children && require.cache[filePath] && require.cache[filePath].children) {
+		let i = require.cache[filePath].children.length;
 
 		while (i--) {
-            delete require.cache[require.cache[filePath].children[i].id];
+			delete require.cache[require.cache[filePath].children[i].id];
 		}
-    }
+	}
 
 	// Delete itself from module parent
 	if (require.cache[filePath] && require.cache[filePath].parent) {
