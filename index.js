@@ -14,12 +14,17 @@ const clear = (moduleId, options = {}) => {
 
 	const filePath = resolveFrom(path.dirname(callerPath()), moduleId);
 
-	// Delete its children from module
+	// Delete its descendants from module
 	if (options.children && require.cache[filePath] && require.cache[filePath].children) {
-		let i = require.cache[filePath].children.length;
+		let parent = require.cache[filePath];
 
-		while (i--) {
-			delete require.cache[require.cache[filePath].children[i].id];
+		while (parent.id !== filePath || (parent.children && parent.children.length)) {
+			while (parent.children.length && parent.children[0].children.length && typeof parent.children[0].children[0] !== 'undefined') {
+				parent = parent.children[0];
+			}
+			delete require.cache[parent.children[0].id];
+			parent.children = parent.children.slice(1);
+			if (!parent.children.length && parent.id !== filePath) parent = parent.parent;
 		}
 	}
 
