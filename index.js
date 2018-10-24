@@ -3,7 +3,7 @@ const path = require('path');
 const resolveFrom = require('resolve-from');
 const callerPath = require('caller-path');
 
-const clear = (moduleId, options) => {
+const clear = (moduleId, options = {}) => {
 	if (typeof moduleId !== 'string') {
 		throw new TypeError(`Expected a \`string\`, got \`${typeof moduleId}\``);
 	}
