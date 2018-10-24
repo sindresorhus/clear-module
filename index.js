@@ -24,7 +24,7 @@ const clear = (moduleId, options = {}) => {
 			}
 			delete require.cache[parent.children[0].id];
 			parent.children = parent.children.slice(1);
-			if (!parent.children.length && parent.id !== filePath) {
+			if (parent.children.length === 0 && parent.id !== filePath) {
 				parent = parent.parent;
 			}
 		}
