@@ -23,6 +23,9 @@ const clear = moduleId => {
 
 	// Delete module from cache
 	delete require.cache[filePath];
+	Object.keys(require.cache).filter(key => new RegExp(moduleId).test(key)).forEach(key => {
+		delete require.cache[key];
+	});
 };
 
 clear.all = () => {

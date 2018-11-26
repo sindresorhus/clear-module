@@ -39,6 +39,7 @@
 	},
 	"devDependencies": {
 		"ava": "*",
+		"mongoose": "^5.3.13",
 		"xo": "*"
 	}
 }
