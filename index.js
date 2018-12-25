@@ -1,14 +1,14 @@
 'use strict';
 const path = require('path');
 const resolveFrom = require('resolve-from');
-const callerPath = require('caller-path');
+const parentModule = require('parent-module');
 
 const clear = moduleId => {
 	if (typeof moduleId !== 'string') {
 		throw new TypeError(`Expected a \`string\`, got \`${typeof moduleId}\``);
 	}
 
-	const filePath = resolveFrom(path.dirname(callerPath()), moduleId);
+	const filePath = resolveFrom(path.dirname(parentModule(__filename)), moduleId);
 
 	// Delete itself from module parent
 	if (require.cache[filePath] && require.cache[filePath].parent) {
