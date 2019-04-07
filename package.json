@@ -13,10 +13,11 @@
 		"node": ">=6"
 	},
 	"scripts": {
-		"test": "xo && ava"
+		"test": "xo && ava && tsd"
 	},
 	"files": [
-		"index.js"
+		"index.js",
+		"index.d.ts"
 	],
 	"keywords": [
 		"clear",
@@ -34,11 +35,12 @@
 		"rm"
 	],
 	"dependencies": {
-		"parent-module": "^1.0.0",
+		"parent-module": "^1.0.1",
 		"resolve-from": "^4.0.0"
 	},
 	"devDependencies": {
-		"ava": "^1.0.1",
-		"xo": "^0.23.0"
+		"ava": "^1.4.1",
+		"tsd": "^0.7.2",
+		"xo": "^0.24.0"
 	}
 }
