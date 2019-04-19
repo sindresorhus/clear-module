@@ -39,14 +39,6 @@ declare const clear: {
 	@param regex - Regex to match against the module IDs.
 	*/
 	match(regex: RegExp): void;
-
-
-	/**
-	Clear a module from cache including its dependencies
-
-	@param moduleId - What you would use with `require()`.
-	*/
-	recursive(moduleId: string): void;
 };
 
 export = clear;

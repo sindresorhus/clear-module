@@ -72,17 +72,6 @@ Type: `RegExp`
 Regex to match against the module IDs.
 
 
-### clearModule.recursive(moduleId)
-
-Clear all matching modules from the cache including all module dependencies.
-
-#### moduleId
-
-Type: `string`
-
-What you would use with `require()`.
-
-
 ## Related
 
 - [import-fresh](https://github.com/sindresorhus/import-fresh) - Import a module while bypassing the cache

@@ -22,7 +22,7 @@ const clear = (moduleId, recursive = false) => {
 	}
 
 	// Remove all descendants from cache as well
-	if (recursive) {
+	if (require.cache[filePath] && recursive) {
 		require.cache[filePath].children.forEach(({id}) => clear(id, true));
 	}
 
@@ -43,7 +43,5 @@ clear.match = regex => {
 		}
 	}
 };
-
-clear.recursive = moduleId => clear(moduleId, true);
 
 module.exports = clear;
