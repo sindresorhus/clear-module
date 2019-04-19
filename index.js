@@ -3,7 +3,7 @@ const path = require('path');
 const resolveFrom = require('resolve-from');
 const parentModule = require('parent-module');
 
-const clear = moduleId => {
+const clear = (moduleId, recursive = false) => {
 	if (typeof moduleId !== 'string') {
 		throw new TypeError(`Expected a \`string\`, got \`${typeof moduleId}\``);
 	}
@@ -19,6 +19,11 @@ const clear = moduleId => {
 				require.cache[filePath].parent.children.splice(i, 1);
 			}
 		}
+	}
+
+	// Remove all descendants from cache as well
+	if (recursive) {
+		require.cache[filePath].children.forEach(({id}) => clear(id, true));
 	}
 
 	// Delete module from cache
@@ -38,5 +43,7 @@ clear.match = regex => {
 		}
 	}
 };
+
+clear.recursive = moduleId => clear(moduleId, true);
 
 module.exports = clear;

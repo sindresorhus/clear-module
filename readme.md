@@ -35,16 +35,27 @@ require('./foo')();
 //=> 1
 ```
 
+Also clean all module's dependencies from cache
+```js
+clearModule('./foo', true);
+```
+
 
 ## API
 
-### clearModule(moduleId)
+### clearModule(moduleId, [recursive=false])
 
 #### moduleId
 
 Type: `string`
 
 What you would use with `require()`.
+
+#### recursive
+
+Type: `boolean`
+
+Clear all module dependencies as well (defaults to `false`)
 
 ### clearModule.all()
 
@@ -59,6 +70,17 @@ Clear all matching modules from the cache.
 Type: `RegExp`
 
 Regex to match against the module IDs.
+
+
+### clearModule.recursive(moduleId)
+
+Clear all matching modules from the cache including all module dependencies.
+
+#### moduleId
+
+Type: `string`
+
+What you would use with `require()`.
 
 
 ## Related
