@@ -35,15 +35,9 @@ require('./foo')();
 //=> 1
 ```
 
-Also clean all module's dependencies from cache
-```js
-clearModule('./foo', true);
-```
-
-
 ## API
 
-### clearModule(moduleId, [recursive=false])
+### clearModule(moduleId, {recursive: false})
 
 #### moduleId
 
@@ -51,7 +45,11 @@ Type: `string`
 
 What you would use with `require()`.
 
-#### recursive
+#### options (optional)
+
+Type: `object`
+
+##### options.recursive
 
 Type: `boolean`
 

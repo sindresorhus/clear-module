@@ -3,7 +3,7 @@ const path = require('path');
 const resolveFrom = require('resolve-from');
 const parentModule = require('parent-module');
 
-const clear = (moduleId, recursive = false) => {
+const clear = (moduleId, {recursive = true} = {}) => {
 	if (typeof moduleId !== 'string') {
 		throw new TypeError(`Expected a \`string\`, got \`${typeof moduleId}\``);
 	}
@@ -32,7 +32,7 @@ const clear = (moduleId, recursive = false) => {
 
 clear.all = () => {
 	for (const moduleId of Object.keys(require.cache)) {
-		clear(moduleId);
+		clear(moduleId, {recursive: false});
 	}
 };
 

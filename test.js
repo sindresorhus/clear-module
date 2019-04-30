@@ -25,13 +25,13 @@ test('clearModule.match()', t => {
 	t.is(require(match)(), 1);
 });
 
-test('clearModule() with recursive flag', t => {
+test('clearModule() recursively', t => {
 	const id = './fixture-with-dependency';
 	clearModule('./fixture');
 	t.is(require(id)(), 1);
 	t.is(require(id)(), 2);
-	clearModule(id);
+	clearModule(id, {recursive: false});
 	t.is(require(id)(), 3);
-	clearModule(id, true);
+	clearModule(id);
 	t.is(require(id)(), 1);
 });

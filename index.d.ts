@@ -26,7 +26,7 @@ declare const clear: {
 	//=> 1
 	```
 	*/
-	(moduleId: string, recursive?: boolean): void;
+	(moduleId: string, options?: { recursive?: boolean }): void;
 
 	/**
 	Clear all modules from the cache.
