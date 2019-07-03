@@ -35,6 +35,7 @@ require('./foo')();
 //=> 1
 ```
 
+
 ## API
 
 ### clearModule(moduleId)
