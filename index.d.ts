@@ -3,7 +3,6 @@ declare const clear: {
 	Clear a module from the [cache](https://nodejs.org/api/modules.html#modules_caching).
 
 	@param moduleId - What you would use with `require()`.
-	@param recursive - Clear all module dependencies as well.
 
 	@example
 	```
@@ -26,7 +25,7 @@ declare const clear: {
 	//=> 1
 	```
 	*/
-	(moduleId: string, options?: { recursive?: boolean }): void;
+	(moduleId: string): void;
 
 	/**
 	Clear all modules from the cache.

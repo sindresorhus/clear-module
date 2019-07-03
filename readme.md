@@ -45,16 +45,6 @@ Type: `string`
 
 What you would use with `require()`.
 
-#### options (optional)
-
-Type: `object`
-
-##### options.recursive
-
-Type: `boolean`
-
-Clear all module dependencies as well (defaults to `false`)
-
 ### clearModule.all()
 
 Clear all modules from the cache.
