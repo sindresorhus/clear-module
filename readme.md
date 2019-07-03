@@ -37,7 +37,7 @@ require('./foo')();
 
 ## API
 
-### clearModule(moduleId, {recursive: false})
+### clearModule(moduleId)
 
 #### moduleId
 

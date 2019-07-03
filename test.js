@@ -30,4 +30,8 @@ test('clearModule() recursively', t => {
 	const id = './fixture-with-dependency';
 	t.is(require(id)(), 1);
 	t.is(require(id)(), 2);
+	delete require.cache[require.resolve(id)];
+	t.is(require(id)(), 3);
+	clearModule(id);
+	t.is(require(id)(), 1);
 });
