@@ -3,12 +3,24 @@ const path = require('path');
 const resolveFrom = require('resolve-from');
 const parentModule = require('parent-module');
 
+const resolve = moduleId => {
+	try {
+		return resolveFrom(path.dirname(parentModule(__filename)), moduleId);
+	} catch (error) {
+		return undefined;
+	}
+};
+
 const clear = moduleId => {
 	if (typeof moduleId !== 'string') {
 		throw new TypeError(`Expected a \`string\`, got \`${typeof moduleId}\``);
 	}
 
-	const filePath = resolveFrom(path.dirname(parentModule(__filename)), moduleId);
+	const filePath = resolve(moduleId);
+
+	if (!filePath) {
+		return;
+	}
 
 	// Delete itself from module parent
 	if (require.cache[filePath] && require.cache[filePath].parent) {
