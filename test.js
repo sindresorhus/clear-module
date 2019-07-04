@@ -24,3 +24,14 @@ test('clearModule.match()', t => {
 	t.is(require(id)(), 2);
 	t.is(require(match)(), 1);
 });
+
+test('clearModule() recursively', t => {
+	clearModule.all();
+	const id = './fixture-with-dependency';
+	t.is(require(id)(), 1);
+	t.is(require(id)(), 2);
+	delete require.cache[require.resolve(id)];
+	t.is(require(id)(), 3);
+	clearModule(id);
+	t.is(require(id)(), 1);
+});
