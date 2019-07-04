@@ -35,7 +35,9 @@ const clear = moduleId => {
 
 	// Remove all descendants from cache as well
 	if (require.cache[filePath]) {
-		require.cache[filePath].children.forEach(({id}) => clear(id, true));
+		for (const {id} of require.cache[filePath].children) {
+			clear(id);
+		}
 	}
 
 	// Delete module from cache
@@ -43,10 +45,10 @@ const clear = moduleId => {
 };
 
 clear.all = () => {
-	const dir = path.dirname(parentModule(__filename));
+	const directory = path.dirname(parentModule(__filename));
 
 	for (const moduleId of Object.keys(require.cache)) {
-		delete require.cache[resolveFrom(dir, moduleId)];
+		delete require.cache[resolveFrom(directory, moduleId)];
 	}
 };
 

@@ -67,8 +67,3 @@ Regex to match against the module IDs.
 - [import-from](https://github.com/sindresorhus/import-from) - Import a module from a given path
 - [import-cwd](https://github.com/sindresorhus/import-cwd) - Import a module from the current working directory
 - [import-lazy](https://github.com/sindresorhus/import-lazy) - Import a module lazily
-
-
-## License
-
-MIT © [Sindre Sorhus](https://sindresorhus.com)
