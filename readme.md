@@ -70,6 +70,26 @@ Type: `string`
 
 What you would use with `require()`.
 
+<details>
+<summary>Example use</summary>
+"clear" function will clear only the business logic of the module, any child dependencies will remain in memory.
+
+
+
+In the following example, `stats` module will **not** be cleared from memory
+
+**some-application-route.js**
+```js
+const stats = require('stats');
+module.exports = () => {...}
+```
+
+**code manager**
+```js
+clearModule.single('some-application-route');
+```
+</details>
+
 ## Related
 
 - [import-fresh](https://github.com/sindresorhus/import-fresh) - Import a module while bypassing the cache
