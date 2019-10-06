@@ -38,6 +38,12 @@ declare const clear: {
 	@param regex - Regex to match against the module IDs.
 	*/
 	match(regex: RegExp): void;
+
+	/**
+	Clear only one single module from cache
+	@param moduleId - string identifier of module
+	*/
+	single(moduleId: string): void;
 };
 
 export = clear;

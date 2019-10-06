@@ -60,4 +60,12 @@ clear.match = regex => {
 	}
 };
 
+clear.single = moduleId => {
+	if (typeof moduleId !== 'string') {
+		throw new TypeError(`Expected a \`string\`, got \`${typeof moduleId}\``);
+	}
+
+	delete require.cache[resolve(moduleId)];
+};
+
 module.exports = clear;

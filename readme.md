@@ -60,6 +60,15 @@ Type: `RegExp`
 
 Regex to match against the module IDs.
 
+### clearModule.single(moduleId)
+
+Clear one module from cache non-recursively
+
+#### moduleId
+
+Type: `string`
+
+What you would use with `require()`.
 
 ## Related
 
