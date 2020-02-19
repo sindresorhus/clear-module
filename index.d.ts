@@ -40,8 +40,8 @@ declare const clear: {
 	match(regex: RegExp): void;
 
 	/**
-	Clear only one single module from cache
-	@param moduleId - string identifier of module
+	Clear only a module from the cache. No parent or child modules should be affected
+	@param moduleId - What you would use with `require()`.
 	*/
 	single(moduleId: string): void;
 };

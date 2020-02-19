@@ -74,7 +74,7 @@ What you would use with `require()`.
 <summary>Example use</summary>
 "clear" function will clear only the business logic of the module, any child dependencies will remain in memory.
 
-
+This use case is relevant for systems sustaining a state that's dependant on the Singelton nature of modules. When user would want to clear a specific module from memory without it having any "side effects" such as clearing a child module from memory as well.
 
 In the following example, `stats` module will **not** be cleared from memory
 
