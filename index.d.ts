@@ -40,7 +40,8 @@ declare const clear: {
 	match(regex: RegExp): void;
 
 	/**
-	Clear only a module from the cache. No parent or child modules should be affected
+	Clear one module from cache non-recursively. No parent or child modules should be affected.
+	Relevant for systems with a state that's dependant on Singelton pattern. When user would want to clear a specific module from memory without it having any "side effects" such as clearing a child module from memory as well.
 	@param moduleId - What you would use with `require()`.
 	*/
 	single(moduleId: string): void;
