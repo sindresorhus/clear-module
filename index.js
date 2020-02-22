@@ -6,9 +6,7 @@ const parentModule = require('parent-module');
 const resolve = moduleId => {
 	try {
 		return resolveFrom(path.dirname(parentModule(__filename)), moduleId);
-	} catch (error) {
-		return undefined;
-	}
+	} catch (_) {}
 };
 
 const clear = moduleId => {

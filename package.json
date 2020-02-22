@@ -4,10 +4,11 @@
 	"description": "Clear a module from the cache",
 	"license": "MIT",
 	"repository": "sindresorhus/clear-module",
+	"funding": "https://github.com/sponsors/sindresorhus",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"url": "https://sindresorhus.com"
 	},
 	"engines": {
 		"node": ">=8"
