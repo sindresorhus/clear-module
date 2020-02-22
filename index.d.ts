@@ -43,6 +43,20 @@ declare const clear: {
 	Clear one module from cache non-recursively. No parent or child modules should be affected.
 	Relevant for systems with a state that's dependant on Singelton pattern. When user would want to clear a specific module from memory without it having any "side effects" such as clearing a child module from memory as well.
 	@param moduleId - What you would use with `require()`.
+
+	@example
+	In the following example, `stats` module will **not** be cleared from memory
+
+	**some-application-route.js**
+	```js
+	const stats = require('stats');
+	module.exports = () => {...}
+	```
+
+	**code manager**
+	```js
+	clearModule.single('some-application-route');
+	```
 	*/
 	single(moduleId: string): void;
 };
