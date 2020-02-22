@@ -35,3 +35,14 @@ test('clearModule() recursively', t => {
 	clearModule(id);
 	t.is(require(id)(), 1);
 });
+
+test('clearModule.single()', t => {
+	clearModule.all();
+	const id = './fixture-with-dependency';
+	t.is(require(id)(), 1);
+	t.is(require(id)(), 2);
+	clearModule.single(id);
+	t.is(require(id)(), 3);
+	clearModule(id);
+	t.is(require(id)(), 1);
+});
