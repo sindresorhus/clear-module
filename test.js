@@ -47,7 +47,7 @@ test('clearModule.single()', t => {
 	t.is(require(id)(), 1);
 });
 
-test('Avoid exceeding maximum call stack size (circular)', t => {
+test('Works with circular dependencies', t => {
 	const id1 = './fixture-circular-1';
 	require(id1);
 	let parentCalls = 0;
