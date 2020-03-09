@@ -47,12 +47,15 @@ test('clearModule.single()', t => {
 	t.is(require(id)(), 1);
 });
 
-test('Works with circular dependencies', t => {
+test('works with circular dependencies', t => {
 	const id1 = './fixture-circular-1';
 	require(id1);
+
 	let parentCalls = 0;
 	let childrenCalls = 0;
+
 	const {children, parents} = require.cache[require.resolve(id1)];
+
 	Object.defineProperty(
 		require.cache[require.resolve(id1)],
 		'children',
@@ -63,6 +66,7 @@ test('Works with circular dependencies', t => {
 			}
 		}
 	);
+
 	Object.defineProperty(
 		require.cache[require.resolve(id1)],
 		'parent',
@@ -73,6 +77,7 @@ test('Works with circular dependencies', t => {
 			}
 		}
 	);
+
 	clearModule(id1);
 	t.is(parentCalls, 1);
 	t.is(childrenCalls, 4);
