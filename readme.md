@@ -48,7 +48,7 @@ What you would use with `require()`.
 Type: `function`
 
 Optional callback to filter with, must return false to not clear.
-Passes in the moduleId and full path to the function.
+Passes in the full path to the module.
 Will not process child modules of modules that are filtered out.
 
 ### clearModule.all()

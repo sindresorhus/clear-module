@@ -20,7 +20,7 @@ const clear = (moduleId, callback) => {
 		return;
 	}
 
-	if (typeof callback === 'function' && (callback(moduleId, filePath) === false)) {
+	if (typeof callback === 'function' && (callback(filePath) === false)) {
 		return;
 	}
 
