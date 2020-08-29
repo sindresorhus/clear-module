@@ -51,9 +51,13 @@ Type: `object`
 
 Optional callback to filter with, must return false to not clear. Passes in the full path to the module. Will not process child modules of modules that are filtered out.
 
-Use case
+Use case: This allows you to prevent specific submodules from being unloaded, you may need to do this if modules are shared between always running code, and modules that are loaded/unloaded.
 
-This allows you to prevent specific submodules from being unloaded, i.e. aws-sdk, if used in main code, but you have it in modules that are being cleared out, this could adversely affect code that is not being cleared. You could also, prevent anything from node_modules from being unloaded as well, fp => !fp.match(/node_modules/). For users, this will only unload user code and not package code.
+`clearModule('./my-module', { filter: name => !name.match(/aws-sdk/) })` would prevent the aws-sdk from being cleared
+
+`clearModule('./my-module', { filter: name => !name.match(/node_modules/) })` would prevent all node_modules from being cleared
+
+Note: not the same as the match function, as the match function still clears all children of the match.
 
 ### clearModule.all()
 
