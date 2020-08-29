@@ -83,3 +83,14 @@ test('works with circular dependencies', t => {
 	t.is(childrenCalls, 4);
 	clearModule.all();
 });
+
+test('clear with filter', t => {
+	const id = './fixture-filter';
+	require(id);
+
+	const parentmodule = Object.keys(require.cache).find(v => v.match(/parent-module/));
+
+	t.is(typeof require.cache[parentmodule] !== 'undefined', true);
+	clearModule(id, v => !v.match(/parent-module/));
+	t.is(typeof require.cache[parentmodule] !== 'undefined', true);
+});

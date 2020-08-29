@@ -25,7 +25,7 @@ declare const clear: {
 	//=> 1
 	```
 	*/
-	(moduleId: string): void;
+	(moduleId: string, callback?: (filePath: string) => boolean | undefined): void;
 
 	/**
 	Clear all modules from the cache.
