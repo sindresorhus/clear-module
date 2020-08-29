@@ -9,7 +9,7 @@ const resolve = moduleId => {
 	} catch (_) {}
 };
 
-const clear = (moduleId, callback) => {
+const clear = (moduleId, options) => {
 	if (typeof moduleId !== 'string') {
 		throw new TypeError(`Expected a \`string\`, got \`${typeof moduleId}\``);
 	}
@@ -20,7 +20,7 @@ const clear = (moduleId, callback) => {
 		return;
 	}
 
-	if (typeof callback === 'function' && (callback(filePath) === false)) {
+	if (typeof options === 'object' && typeof options.filter === 'function' && (options.filter(filePath) === false)) {
 		return;
 	}
 
@@ -43,7 +43,7 @@ const clear = (moduleId, callback) => {
 		delete require.cache[filePath];
 
 		for (const {id} of children) {
-			clear(id, callback);
+			clear(id, options);
 		}
 	}
 };

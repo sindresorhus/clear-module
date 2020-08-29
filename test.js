@@ -91,6 +91,8 @@ test('clear with filter', t => {
 	const parentmodule = Object.keys(require.cache).find(v => v.match(/parent-module/));
 
 	t.is(typeof require.cache[parentmodule] !== 'undefined', true);
-	clearModule(id, v => !v.match(/parent-module/));
+	clearModule(id, {
+		filter: v => !v.match(/parent-module/)
+	});
 	t.is(typeof require.cache[parentmodule] !== 'undefined', true);
 });

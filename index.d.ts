@@ -1,8 +1,18 @@
+interface Options {
+    /**
+    Provide filter function for modules included in clearing
+
+    @default undefined
+	*/
+	readonly filter?: (fullPath: string) => boolean | undefined
+}
+
 declare const clear: {
 	/**
 	Clear a module from the [cache](https://nodejs.org/api/modules.html#modules_caching).
 
 	@param moduleId - What you would use with `require()`.
+	@param options - Options, a filter function.
 
 	@example
 	```
@@ -25,7 +35,7 @@ declare const clear: {
 	//=> 1
 	```
 	*/
-	(moduleId: string, callback?: (fullPath: string) => boolean | undefined): void;
+	(moduleId: string, options?: Options): void;
 
 	/**
 	Clear all modules from the cache.
