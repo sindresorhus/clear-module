@@ -35,13 +35,21 @@ require('./foo')();
 
 ## API
 
-### clearModule(moduleId)
+### clearModule(moduleId, callback)
 
 #### moduleId
 
 Type: `string`
 
 What you would use with `require()`.
+
+#### callback
+
+Type: `function`
+
+Optional callback to filter with, must return false to not clear.
+Passes in the moduleId and full path to the function.
+Will not process child modules of modules that are filtered out.
 
 ### clearModule.all()
 
