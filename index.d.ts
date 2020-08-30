@@ -1,6 +1,6 @@
 interface Options {
 	/**
-	Provide filter function for modules included in clearing
+	Optional filter function, function should return false to prevent the module from being removed from cache.
 
 	@default undefined
 	*/
@@ -12,7 +12,7 @@ declare const clear: {
 	Clear a module from the [cache](https://nodejs.org/api/modules.html#modules_caching).
 
 	@param moduleId - What you would use with `require()`.
-	@param options - Options, a filter function.
+	@param options - Options
 
 	@example
 	```

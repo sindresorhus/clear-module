@@ -47,17 +47,15 @@ What you would use with `require()`.
 
 Type: `object`
 
+Options
+
 ##### options.filter
 
-Optional callback to filter with, must return false to not clear. Passes in the full path to the module. Will not process child modules of modules that are filtered out.
+Optional filter function, function should return false to prevent the module from being removed from cache.
 
-Use case: This allows you to prevent specific submodules from being unloaded, you may need to do this if modules are shared between always running code, and modules that are loaded/unloaded.
+Use case: To prevent any module in node_modules from being uncached.
 
-`clearModule('./my-module', { filter: name => !name.match(/aws-sdk/) })` would prevent the aws-sdk from being cleared
-
-`clearModule('./my-module', { filter: name => !name.match(/node_modules/) })` would prevent all node_modules from being cleared
-
-Note: not the same as the match function, as the match function still clears all children of the match.
+`clearModule('./my-module', { filter: name => !name.match(/node_modules/) })`
 
 ### clearModule.all()
 
