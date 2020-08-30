@@ -1,8 +1,8 @@
 interface Options {
-    /**
-    Provide filter function for modules included in clearing
+	/**
+	Provide filter function for modules included in clearing
 
-    @default undefined
+	@default undefined
 	*/
 	readonly filter?: (fullPath: string) => boolean | undefined
 }
