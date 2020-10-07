@@ -88,11 +88,11 @@ test('clear with filter', t => {
 	const id = './fixture-filter';
 	require(id);
 
-	const parentmodule = Object.keys(require.cache).find(v => v.match(/parent-module/));
+	const parentmodule = Object.keys(require.cache).find(value => value.includes(/parent-module/));
 
-	t.is(typeof require.cache[parentmodule] !== 'undefined', true);
+	t.true(typeof require.cache[parentmodule] !== 'undefined');
 	clearModule(id, {
 		filter: v => !v.match(/parent-module/)
 	});
-	t.is(typeof require.cache[parentmodule] !== 'undefined', true);
+	t.true(typeof require.cache[parentmodule] !== 'undefined');
 });
