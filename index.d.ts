@@ -4,7 +4,7 @@ interface Options {
 
 	@default undefined
 	*/
-	readonly filter?: (fullPath: string) => boolean | void
+	readonly filter?: (fullPath: string) => boolean
 }
 
 declare const clear: {
