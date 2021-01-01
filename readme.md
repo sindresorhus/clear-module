@@ -1,4 +1,4 @@
-# clear-module [![Build Status](https://travis-ci.org/sindresorhus/clear-module.svg?branch=master)](https://travis-ci.org/sindresorhus/clear-module)
+# clear-module
 
 > Clear a module from the [cache](https://nodejs.org/api/modules.html#modules_caching)
 
