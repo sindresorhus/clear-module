@@ -2,9 +2,9 @@ interface Options {
 	/**
 	Optional filter function. function should return false to prevent the module from being removed from cache.
 
-  Use case: To prevent any module in node_modules from being uncached.
+	Use case: To prevent any module in node_modules from being uncached.
 
-  `clearModule('./my-module', { filter: name => !name.match(/node_modules/) })`
+	`clearModule('./my-module', { filter: name => !name.match(/node_modules/) })`
 
 	@default undefined
 	*/
