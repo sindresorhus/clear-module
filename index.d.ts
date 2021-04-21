@@ -1,6 +1,10 @@
 interface Options {
 	/**
-	Optional filter function, function should return false to prevent the module from being removed from cache.
+	Optional filter function. function should return false to prevent the module from being removed from cache.
+
+  Use case: To prevent any module in node_modules from being uncached.
+
+  `clearModule('./my-module', { filter: name => !name.match(/node_modules/) })`
 
 	@default undefined
 	*/
@@ -12,7 +16,6 @@ declare const clear: {
 	Clear a module from the [cache](https://nodejs.org/api/modules.html#modules_caching).
 
 	@param moduleId - What you would use with `require()`.
-	@param options - Options
 
 	@example
 	```

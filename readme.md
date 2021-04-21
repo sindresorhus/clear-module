@@ -45,13 +45,9 @@ What you would use with `require()`.
 
 #### options
 
-Type: `object`
-
-Options
-
 ##### options.filter
 
-Optional filter function, function should return false to prevent the module from being removed from cache.
+Optional filter function. function should return false to prevent the module from being removed from cache.
 
 Use case: To prevent any module in node_modules from being uncached.
 
