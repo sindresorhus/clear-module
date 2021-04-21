@@ -90,9 +90,9 @@ test('clear with filter', test_module_functions => {
 
 	const parentmodule = Object.keys(require.cache).find(value => value.includes('parent-module'));
 
-	test_module_functions.not(typeof require.cache[parentmodule] !== 'undefined');
+	test_module_functions.not(typeof require.cache[parentmodule] !== 'undefined', false);
 	clearModule(id, {
 		filter: absolute_path_to_cached_file => !absolute_path_to_cached_file.match(/parent-module/)
 	});
-	test_module_functions.not(typeof require.cache[parentmodule] !== 'undefined');
+	test_module_functions.not(typeof require.cache[parentmodule] !== 'undefined', false);
 });
