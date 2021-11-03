@@ -33,12 +33,12 @@ const clear = moduleId => {
 
 	// Remove all descendants from cache as well
 	if (require.cache[filePath]) {
-		const {children} = require.cache[filePath];
+		const children = require.cache[filePath].children.map(child => child.id);
 
 		// Delete module from cache
 		delete require.cache[filePath];
 
-		for (const {id} of children) {
+		for (const id of children) {
 			clear(id);
 		}
 	}
