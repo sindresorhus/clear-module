@@ -20,6 +20,12 @@ const clear = moduleId => {
 		return;
 	}
 
+	// Skip native modules (.node files) — re-requiring them after deletion causes "Unknown failure"
+	// See: https://github.com/nodejs/node/commit/5c14d695d2c1f924cf06af6ae896027569993a5c
+	if (filePath.endsWith('.node')) {
+		return;
+	}
+
 	// Delete itself from module parent
 	if (require.cache[filePath] && require.cache[filePath].parent) {
 		let i = require.cache[filePath].parent.children.length;
