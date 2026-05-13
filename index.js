@@ -9,6 +9,8 @@ const resolve = moduleId => {
 	} catch (_) {}
 };
 
+const isNativeModule = filePath => path.extname(filePath) === '.node';
+
 const clear = moduleId => {
 	if (typeof moduleId !== 'string') {
 		throw new TypeError(`Expected a \`string\`, got \`${typeof moduleId}\``);
@@ -17,6 +19,10 @@ const clear = moduleId => {
 	const filePath = resolve(moduleId);
 
 	if (!filePath) {
+		return;
+	}
+
+	if (isNativeModule(filePath)) {
 		return;
 	}
 
@@ -45,10 +51,10 @@ const clear = moduleId => {
 };
 
 clear.all = () => {
-	const directory = path.dirname(parentModule(__filename));
-
-	for (const moduleId of Object.keys(require.cache)) {
-		delete require.cache[resolveFrom(directory, moduleId)];
+	for (const filePath of Object.keys(require.cache)) {
+		if (!isNativeModule(filePath)) {
+			delete require.cache[filePath];
+		}
 	}
 };
 
@@ -65,7 +71,13 @@ clear.single = moduleId => {
 		throw new TypeError(`Expected a \`string\`, got \`${typeof moduleId}\``);
 	}
 
-	delete require.cache[resolve(moduleId)];
+	const filePath = resolve(moduleId);
+
+	if (!filePath || isNativeModule(filePath)) {
+		return;
+	}
+
+	delete require.cache[filePath];
 };
 
 module.exports = clear;

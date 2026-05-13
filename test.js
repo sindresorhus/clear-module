@@ -1,5 +1,42 @@
+import fs from 'fs';
+import path from 'path';
 import test from 'ava';
 import clearModule from '.';
+
+const nativeModulePath = path.join(process.cwd(), '.ai-temporary', 'fixture-native.node');
+
+const nonNativeModuleIds = () => Object.keys(require.cache).filter(moduleId => path.extname(moduleId) !== '.node');
+
+const seedNativeModule = () => {
+	if (!fs.existsSync(path.dirname(nativeModulePath))) {
+		fs.mkdirSync(path.dirname(nativeModulePath));
+	}
+
+	fs.writeFileSync(nativeModulePath, '');
+
+	const nativeModule = {
+		id: nativeModulePath,
+		filename: nativeModulePath,
+		loaded: true,
+		exports: {},
+		children: [],
+		parent: module
+	};
+
+	require.cache[nativeModulePath] = nativeModule;
+
+	return nativeModule;
+};
+
+const clearNativeModule = () => {
+	delete require.cache[nativeModulePath];
+
+	if (fs.existsSync(nativeModulePath)) {
+		fs.unlinkSync(nativeModulePath);
+	}
+};
+
+test.after.always(clearNativeModule);
 
 test('clearModule()', t => {
 	const id = './fixture';
@@ -10,9 +47,9 @@ test('clearModule()', t => {
 });
 
 test('clearModule.all()', t => {
-	t.true(Object.keys(require.cache).length > 0);
+	t.true(nonNativeModuleIds().length > 0);
 	clearModule.all();
-	t.is(Object.keys(require.cache).length, 0);
+	t.is(nonNativeModuleIds().length, 0);
 });
 
 test('clearModule.match()', t => {
@@ -55,6 +92,36 @@ test('clearModule.single()', t => {
 	t.is(require(id)(), 3);
 	clearModule(id);
 	t.is(require(id)(), 1);
+});
+
+test.serial('native modules are not cleared', t => {
+	try {
+		let nativeModule = seedNativeModule();
+		clearModule(nativeModulePath);
+		t.is(require.cache[nativeModulePath], nativeModule);
+
+		nativeModule = seedNativeModule();
+		clearModule.single(nativeModulePath);
+		t.is(require.cache[nativeModulePath], nativeModule);
+
+		nativeModule = seedNativeModule();
+		clearModule.all();
+		t.is(require.cache[nativeModulePath], nativeModule);
+
+		nativeModule = seedNativeModule();
+		clearModule.match(/fixture-native/);
+		t.is(require.cache[nativeModulePath], nativeModule);
+
+		const id = './fixture';
+		require(id);
+		const fixtureModule = require.cache[require.resolve(id)];
+		nativeModule = seedNativeModule();
+		fixtureModule.children.push(nativeModule);
+		clearModule(id);
+		t.is(require.cache[nativeModulePath], nativeModule);
+	} finally {
+		clearNativeModule();
+	}
 });
 
 test('works with circular dependencies', t => {
