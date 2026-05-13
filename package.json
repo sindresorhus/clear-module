@@ -10,11 +10,13 @@
 		"email": "sindresorhus@gmail.com",
 		"url": "https://sindresorhus.com"
 	},
+	"sideEffects": false,
 	"engines": {
 		"node": ">=8"
 	},
 	"scripts": {
-		"test": "xo && ava && tsd"
+		"//test": "xo && ava && tsd",
+		"test": "ava"
 	},
 	"files": [
 		"index.js",

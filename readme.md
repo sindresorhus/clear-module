@@ -6,8 +6,8 @@ Useful for testing purposes when you need to freshly import a module.
 
 ## Install
 
-```
-$ npm install clear-module
+```sh
+npm install clear-module
 ```
 
 ## Usage
